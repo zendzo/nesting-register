@@ -75,6 +75,8 @@ This project utilizes the following technologies to enable rapid prototyping and
 ## 📌 Current Status
 The project is currently in the **analysis and prototyping phase**. The database schema and ERD have been finalized, and the web-based system is being developed.
 
+![ERD](diagram-export-1-18-2025-12_03_09-PM.png)
+
 ---
 
 ## 🤝 Contributing
@@ -85,7 +87,7 @@ Contributions, suggestions, and feedback are welcome! Feel free to:
 ---
 
 ## 📧 Contact
-For inquiries or collaboration opportunities, reach out via LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/yourusername).
+For inquiries or collaboration opportunities, reach out via LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/m-zaenal-mustofa-8449a576/).
 
 ---
 
