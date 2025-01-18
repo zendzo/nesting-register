@@ -87,7 +87,7 @@ Contributions, suggestions, and feedback are welcome! Feel free to:
 ---
 
 ## 📧 Contact
-For inquiries or collaboration opportunities, reach out via LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/m-zaenal-mustofa-8449a576/).
+For inquiries or collaboration opportunities, reach out via LinkedIn: [LinkedIn](https://www.linkedin.com/in/m-zaenal-mustofa-8449a576/).
 
 ---
 
