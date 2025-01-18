@@ -1,4 +1,3 @@
-```markdown
 # Nesting Register Monitoring System
 
 The **Nesting Register Monitoring System** is a web-based application designed to efficiently record and monitor the nesting process for production. It provides streamlined data management for registrations, transmittals, progress tracking, activity logs, and file management. This project is being developed as a personal initiative to explore advanced database design, automation, and rapid prototyping using modern web technologies.
