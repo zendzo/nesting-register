@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('project_participants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_id')->constrained();
-            $table->foreignId('company_id')->constrained();
-            $table->string('role');
+            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('company_id');
+            $table->enum('role', ['client', 'contractor', 'subcontractor']);
             $table->timestamps();
         });
     }
