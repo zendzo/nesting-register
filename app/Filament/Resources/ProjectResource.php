@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\OccupationResource\Pages;
-use App\Filament\Resources\OccupationResource\RelationManagers;
-use App\Models\Occupation;
+use App\Filament\Resources\ProjectResource\Pages;
+use App\Filament\Resources\ProjectResource\RelationManagers;
+use App\Models\Project;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,37 +13,26 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class OccupationResource extends Resource
+class ProjectResource extends Resource
 {
-    protected static ?string $model = Occupation::class;
+    protected static ?string $model = Project::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-<<<<<<< HEAD
-    protected static ?string $navigationParentItem = 'Users';
-    
-    protected static ?string $navigationGroup = 'Users Management';
-
-=======
->>>>>>> f9969b47057f2f7d4ebb4e9b45082b3a43fbbe0b
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('procject_name')
                     ->required(),
-                Forms\Components\TextInput::make('description'),
-<<<<<<< HEAD
-                Forms\Components\Select::make('department_id')
-                    ->relationship('department', 'name')
-                    ->preload(),
-=======
-                Forms\Components\Select::make('department')
-                    ->relationship('department', 'name')
-                    ->preload()
-                    ->searchable()
+                Forms\Components\TextInput::make('project_code')
                     ->required(),
->>>>>>> f9969b47057f2f7d4ebb4e9b45082b3a43fbbe0b
+                Forms\Components\TextInput::make('fabrication_location')
+                    ->required(),
+                Forms\Components\TextInput::make('installation_location')
+                    ->required(),
+                Forms\Components\TextInput::make('description')
+                    ->required(),
             ]);
     }
 
@@ -51,16 +40,16 @@ class OccupationResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('procject_name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('project_code')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('fabrication_location')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('installation_location')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('department.name')
-<<<<<<< HEAD
-                    ->numeric()
-=======
->>>>>>> f9969b47057f2f7d4ebb4e9b45082b3a43fbbe0b
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -93,9 +82,9 @@ class OccupationResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListOccupations::route('/'),
-            'create' => Pages\CreateOccupation::route('/create'),
-            'edit' => Pages\EditOccupation::route('/{record}/edit'),
+            'index' => Pages\ListProjects::route('/'),
+            'create' => Pages\CreateProject::route('/create'),
+            'edit' => Pages\EditProject::route('/{record}/edit'),
         ];
     }
 }
