@@ -19,13 +19,10 @@ class OccupationResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-<<<<<<< HEAD
     protected static ?string $navigationParentItem = 'Users';
     
     protected static ?string $navigationGroup = 'Users Management';
 
-=======
->>>>>>> f9969b47057f2f7d4ebb4e9b45082b3a43fbbe0b
     public static function form(Form $form): Form
     {
         return $form
@@ -33,17 +30,9 @@ class OccupationResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required(),
                 Forms\Components\TextInput::make('description'),
-<<<<<<< HEAD
                 Forms\Components\Select::make('department_id')
                     ->relationship('department', 'name')
                     ->preload(),
-=======
-                Forms\Components\Select::make('department')
-                    ->relationship('department', 'name')
-                    ->preload()
-                    ->searchable()
-                    ->required(),
->>>>>>> f9969b47057f2f7d4ebb4e9b45082b3a43fbbe0b
             ]);
     }
 
@@ -56,10 +45,7 @@ class OccupationResource extends Resource
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('department.name')
-<<<<<<< HEAD
                     ->numeric()
-=======
->>>>>>> f9969b47057f2f7d4ebb4e9b45082b3a43fbbe0b
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
