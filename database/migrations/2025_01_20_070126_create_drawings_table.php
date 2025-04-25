@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('drawings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
             $table->string('drawing_number')->unique();
             $table->string('drawing_title');
             $table->string('status');
-            $table->string('remakrs');
+            $table->string('remarks');
             $table->timestamps();
         });
     }

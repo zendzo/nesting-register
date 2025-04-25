@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('procject_name');
+            $table->string('project_name');
             $table->string('project_code')->unique();
             $table->string('fabrication_location');
             $table->string('installation_location');
+            $table->unsignedBigInteger('company_id')->refrences('id')->on('companies')->onDelete('cascade');
+            $table->unsignedBigInteger('contractor_id')->refrences('id')->on('companies')->onDelete('cascade');
+            $table->unsignedBigInteger('client_id')->refrences('id')->on('companies')->onDelete('cascade');
             $table->string('description');
             $table->timestamps();
         });

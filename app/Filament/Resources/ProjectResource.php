@@ -23,7 +23,7 @@ class ProjectResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('procject_name')
+                Forms\Components\TextInput::make('project_name')
                     ->required(),
                 Forms\Components\TextInput::make('project_code')
                     ->required(),
@@ -31,6 +31,13 @@ class ProjectResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('installation_location')
                     ->required(),
+                Forms\Components\Select::make('company_id')
+                    ->relationship('owner', 'name')
+                    ->required(),
+                Forms\Components\Select::make('contractor_id')
+                    ->relationship('contractor', 'name'),
+                Forms\Components\Select::make('client_id')
+                    ->relationship('client', 'name'),
                 Forms\Components\TextInput::make('description')
                     ->required(),
             ]);
@@ -40,7 +47,7 @@ class ProjectResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('procject_name')
+                Tables\Columns\TextColumn::make('project_name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('project_code')
                     ->searchable(),
@@ -48,6 +55,15 @@ class ProjectResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('installation_location')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('owner.name')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('contractor.name')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('client.name')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -75,7 +91,7 @@ class ProjectResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\PackagesRelationManager::class,
         ];
     }
 
