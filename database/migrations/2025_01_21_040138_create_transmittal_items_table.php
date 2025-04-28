@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('mark_number');
             $table->string('material');
             $table->string('material_grade');
-            $table->string('thickeness');
+            $table->string('thickness');
             $table->integer('quantity');
             $table->string('unit');
             $table->boolean('cutting_status')->default(false);

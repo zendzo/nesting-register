@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('drawing_title');
             $table->string('status');
             $table->string('remarks');
+            // $table->string('name')->virtualAs('concat(drawing_number, \' \', drawing_title)');
+            $table->string('name')->virtualAs("drawing_number || ' ' || drawing_title");
             $table->timestamps();
         });
     }

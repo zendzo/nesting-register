@@ -59,6 +59,14 @@ class DrawingResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('project.project_code')
+                    ->label('Project Code')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('project.project_name')
+                    ->label('Project Name')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('drawing_number')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('revision.revision_number')

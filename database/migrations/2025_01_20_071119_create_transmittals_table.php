@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('transmittals', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('transmittal_number')->nullable();
+            $table->foreignID('project_id')->constrained('projects')->onDelete('cascade');
+            $table->foreignId('drawing_id')->constrained('drawings')->onDelete('cascade');
+            $table->unsignedBigInteger('nesting_by')->nullable();
+            $table->unsignedBigInteger('requested_by')->nullable();
+            $table->enum('nesting_type', ['Plate','Pipe','Beam'])->default('Plate');
+            $table->date('requested_date')->nullable();
+            $table->date('issued_date')->nullable();
             $table->timestamps();
         });
     }
