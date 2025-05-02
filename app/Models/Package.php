@@ -8,11 +8,11 @@ use illuminate\Database\Elquent\Relations\BelongsTo;
 class Package extends Model
 {
     protected $fillable = [
-      'project_id',
-      'name',
+        'project_id',
+        'name',
     ];
 
-    public function project() : BelongsTo
+    public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
     }

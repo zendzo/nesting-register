@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TransmittalItem extends Model
 {
-    
     protected $fillable = [
         'transmittal_id',
         'mark_number',
@@ -21,7 +20,7 @@ class TransmittalItem extends Model
         'cutting_date',
     ];
 
-    public function transmittal() : BelongsTo
+    public function transmittal(): BelongsTo
     {
         return $this->belongsTo(Transmittal::class);
     }

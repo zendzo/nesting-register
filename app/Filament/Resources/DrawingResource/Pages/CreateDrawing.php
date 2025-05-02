@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\DrawingResource\Pages;
 
 use App\Filament\Resources\DrawingResource;
-use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateDrawing extends CreateRecord

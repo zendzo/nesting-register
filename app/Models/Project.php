@@ -19,15 +19,17 @@ class Project extends Model
         'description',
     ];
 
-    public function owner() : BelongsTo
+    public function owner(): BelongsTo
     {
         return $this->belongsTo(Company::class, 'company_id');
     }
-    public function contractor() : BelongsTo
+
+    public function contractor(): BelongsTo
     {
         return $this->belongsTo(Company::class, 'contractor_id');
     }
-    public function client() : BelongsTo
+
+    public function client(): BelongsTo
     {
         return $this->belongsTo(Company::class, 'client_id');
     }

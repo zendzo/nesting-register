@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ProjectsTableSeeder extends Seeder
@@ -44,7 +43,7 @@ class ProjectsTableSeeder extends Seeder
                 'company_id' => 1,
                 'contractor_id' => 1,
                 'client_id' => 1,
-                'description' => 'Description for project ' . $project['project_name'],
+                'description' => 'Description for project '.$project['project_name'],
             ]);
         }
         $this->command->info('Projects table seeded!');

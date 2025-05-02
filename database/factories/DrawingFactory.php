@@ -17,16 +17,16 @@ class DrawingFactory extends Factory
     public function definition(): array
     {
         return [
-          'project_id' => rand(1, 10),
-          'drawing_number' => $this->faker->randomNumber(5),
-          'drawing_title' => $this->faker->sentences(2, true),
-          'status' => $this->faker->randomElement([
-              'Issued For Review',
-              'Issued For Approval',
-              'Issued For Information',
-              'Approved For Construction',
-          ]),
-          'remarks' => $this->faker->sentences(3, true),
+            'project_id' => rand(1, 10),
+            'drawing_number' => $this->faker->randomNumber(5),
+            'drawing_title' => $this->faker->sentences(2, true),
+            'status' => $this->faker->randomElement([
+                'Issued For Review',
+                'Issued For Approval',
+                'Issued For Information',
+                'Approved For Construction',
+            ]),
+            'remarks' => $this->faker->sentences(3, true),
         ];
     }
 }

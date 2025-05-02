@@ -11,7 +11,7 @@ class DrawingRevision extends Model
         'revision_number',
         'revision_title',
         'revision_date',
-        'remarks'
+        'remarks',
     ];
 
     public function drawing()

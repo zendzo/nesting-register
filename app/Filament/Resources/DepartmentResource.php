@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\DepartmentResource\Pages;
-use App\Filament\Resources\DepartmentResource\RelationManagers;
 use App\Models\Department;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class DepartmentResource extends Resource
 {
@@ -20,7 +17,7 @@ class DepartmentResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $navigationParentItem = 'Users';
-    
+
     protected static ?string $navigationGroup = 'Users Management';
 
     public static function form(Form $form): Form

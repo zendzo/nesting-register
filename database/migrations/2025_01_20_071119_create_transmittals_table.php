@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('drawing_id')->constrained('drawings')->onDelete('cascade');
             $table->unsignedBigInteger('nesting_by')->nullable();
             $table->unsignedBigInteger('requested_by')->nullable();
-            $table->enum('nesting_type', ['Plate','Pipe','Beam'])->default('Plate');
+            $table->enum('nesting_type', ['Plate', 'Pipe', 'Beam'])->default('Plate');
             $table->date('requested_date')->nullable();
             $table->date('issued_date')->nullable();
             $table->timestamps();

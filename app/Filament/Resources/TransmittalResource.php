@@ -3,18 +3,15 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TransmittalResource\Pages;
-use App\Filament\Resources\TransmittalResource\RelationManagers;
-use App\Models\Transmittal;
 use App\Models\Drawing;
 use App\Models\Package;
+use App\Models\Transmittal;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Livewire\Component as Livewire;
@@ -31,68 +28,68 @@ class TransmittalResource extends Resource
             ->schema([
                 Forms\Components\Wizard::make([
                     Forms\Components\Wizard\Step::make('Project')
-                      ->icon('heroicon-o-briefcase')
-                      ->schema([
-                        Forms\Components\Select::make('project_id')
-                          ->label('Select Project')
-                          ->dehydrated(false)
-                          ->relationship('project', 'project_name')
-                          ->getOptionLabelFromRecordUsing(fn (Model $record) => "{$record->project_code} {$record->project_name}")
-                          // ->afterStateUpdated(fn (Livewire $livewire) => $livewire->reset('data.package_id'))
-                          ->searchable('project_name', 'project_code')
-                          ->preload()
-                          ->live()
-                          ->required(),
-                        Forms\Components\Select::make('package_id')
-                          ->label('Select Package')
-                          ->options(fn (Get $get): Collection => Package::where('project_id', $get('project_id'))->pluck('name', 'id'))
-                      ]),
-                      Forms\Components\Wizard\Step::make('Drawing')
-                      ->icon('heroicon-o-document-text')
-                      ->schema([
-                          Forms\Components\Select::make('drawing_id')
-                          ->label('Select Drawing')
-                          ->relationship('drawing', 'drawing_title')
-                          ->searchable('drawing_title', 'drawing_number')
-                          ->preload()
-                          ->live()
-                          ->options(fn (Get $get): Collection => Drawing::where('project_id', $get('project_id'))->pluck('name', 'id')),
-                      ]),
-                      Forms\Components\Wizard\Step::make('Nesting Items')
-                      ->icon('heroicon-o-list-bullet')
-                      ->schema([
-                          Forms\Components\Repeater::make('transmittalItems')
-                            ->label('Nesting Items')
-                            ->relationship()
-                            ->schema([
-                                Forms\Components\TextInput::make('mark_number')
-                                  ->label('Mark Number')
-                                  ->required(),
-                                Forms\Components\Select::make('material')
-                                  ->label('Material')
-                                  ->options([
-                                      'Plate' => 'Plate',
-                                      'Tube/Pipe' => 'Tube/Pipe',
-                                      'Beam' => 'Beam',
-                                  ])
-                                  ->required(),
-                                Forms\Components\TextInput::make('material_grade')
-                                  ->label('Grade')
-                                  ->required(),
-                                Forms\Components\TextInput::make('thickness')
-                                  ->label('Thickness')
-                                  ->required(),
-                                Forms\Components\TextInput::make('quantity')
-                                  ->label('Quantity')
-                                  ->required(),
-                                Forms\Components\TextInput::make('unit')
-                                  ->label('Unit')
-                                  ->required(),
-                            ])
-                            ->columns(6)
-                            ->createItemButtonLabel('Add Item')
-                      ])
-                ])->columnSpan(2)
+                        ->icon('heroicon-o-briefcase')
+                        ->schema([
+                            Forms\Components\Select::make('project_id')
+                                ->label('Select Project')
+                                ->dehydrated(false)
+                                ->relationship('project', 'project_name')
+                                ->getOptionLabelFromRecordUsing(fn (Model $record) => "{$record->project_code} {$record->project_name}")
+                              // ->afterStateUpdated(fn (Livewire $livewire) => $livewire->reset('data.package_id'))
+                                ->searchable('project_name', 'project_code')
+                                ->preload()
+                                ->live()
+                                ->required(),
+                            Forms\Components\Select::make('package_id')
+                                ->label('Select Package')
+                                ->options(fn (Get $get): Collection => Package::where('project_id', $get('project_id'))->pluck('name', 'id')),
+                        ]),
+                    Forms\Components\Wizard\Step::make('Drawing')
+                        ->icon('heroicon-o-document-text')
+                        ->schema([
+                            Forms\Components\Select::make('drawing_id')
+                                ->label('Select Drawing')
+                                ->relationship('drawing', 'drawing_title')
+                                ->searchable('drawing_title', 'drawing_number')
+                                ->preload()
+                                ->live()
+                                ->options(fn (Get $get): Collection => Drawing::where('project_id', $get('project_id'))->pluck('name', 'id')),
+                        ]),
+                    Forms\Components\Wizard\Step::make('Nesting Items')
+                        ->icon('heroicon-o-list-bullet')
+                        ->schema([
+                            Forms\Components\Repeater::make('transmittalItems')
+                                ->label('Nesting Items')
+                                ->relationship()
+                                ->schema([
+                                    Forms\Components\TextInput::make('mark_number')
+                                        ->label('Mark Number')
+                                        ->required(),
+                                    Forms\Components\Select::make('material')
+                                        ->label('Material')
+                                        ->options([
+                                            'Plate' => 'Plate',
+                                            'Tube/Pipe' => 'Tube/Pipe',
+                                            'Beam' => 'Beam',
+                                        ])
+                                        ->required(),
+                                    Forms\Components\TextInput::make('material_grade')
+                                        ->label('Grade')
+                                        ->required(),
+                                    Forms\Components\TextInput::make('thickness')
+                                        ->label('Thickness')
+                                        ->required(),
+                                    Forms\Components\TextInput::make('quantity')
+                                        ->label('Quantity')
+                                        ->required(),
+                                    Forms\Components\TextInput::make('unit')
+                                        ->label('Unit')
+                                        ->required(),
+                                ])
+                                ->columns(6)
+                                ->addActionLabel('Add Item'),
+                        ]),
+                ])->columnSpan(2),
             ]);
     }
 
@@ -116,7 +113,29 @@ class TransmittalResource extends Resource
                     ->label('Issued Date')
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('requestedBy.name')
+                    ->label('Requested By')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('nestingBy.name')
+                    ->action(
+                        Tables\Actions\Action::make('select')
+                            ->requiresConfirmation()
+                            ->form([
+                                Forms\Components\Select::make('nesting_by')
+                                    ->label('Nesting By')
+                                    ->options(\App\Models\User::query()->pluck('name', 'id'))
+                                    ->required(),
+                            ])
+                            ->action(function (array $data, Transmittal $record): void {
+                                $record->nestingBy()->associate($data['nestning_by'])
+                                    ->save();
+                                $record->save();
+                            })->action(function (array $data, Transmittal $record): void {
+                                $record->update(['nesting_by' => $data['nesting_by']]);
+                            })
+                    )
                     ->label('Nesting By')
                     ->sortable()
                     ->searchable(),
@@ -131,28 +150,19 @@ class TransmittalResource extends Resource
                 Tables\Columns\TextColumn::make('drawing.drawing_title')
                     ->label('Drawing Title')
                     ->sortable()
-                    ->searchable(), 
+                    ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\Action::make('nesting_by')
-                  ->form([
-                      Forms\Components\Select::make('nesting_by')
-                          ->label('Nesting By')
-                          ->options(\App\Models\User::query()->pluck('name', 'id'))
-                          ->required(),
-                  ])
-                    ->action(function (array $data, Transmittal $record): void {
-                        $record->nestingBy()->associate($data['nestning_by'])
-                          ->save();
-                        $record->save();
-                    })->action(function (array $data, Transmittal $record): void {
-                        $record->update(['nesting_by' => $data['nesting_by']]);
-                    }),
-                  ])
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\ViewAction::make()
+                     ->url(fn (Transmittal $record): string => route('transmittals.show', $record)),
+                    Tables\Actions\DeleteAction::make(),
+                ]),
+            ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
